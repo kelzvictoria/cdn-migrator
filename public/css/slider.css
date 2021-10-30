@@ -1,0 +1,50 @@
+/* The slider itself */
+.slider {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100% !important; /* Full-width */
+  height: 15px !important; /* Specified height */
+  background: #1f59d8 !important;
+  border: 1px solid #0033a1;
+  outline: none; /* Remove outline */
+  /* opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  /*-webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  /*transition: opacity 0.2s; */
+  margin: 0 20px;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #fff; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border: 2px solid #000;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #fff; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider, .ui-slider-range.ui-corner-all.ui-widget-header {
+    background: #d1e8fb !important;
+    height: 8px !important;
+}
+.ui-slider .ui-slider-handle {
+    background: #0089FF !important;
+    width: 15px !important;
+    height: 16px !important;
+}  
+#age-slider-range .ui-slider-range {
+    display: none;
+}

@@ -1,0 +1,64 @@
+.accordion {
+  margin-bottom: 10px;
+}
+
+.accordion-title {
+  border-radius: 15px;
+  background-color: #f2f2f2;
+  color: #0033a1;
+  /* padding: 20px; */
+  padding: 15px;
+
+  border-top: 1px solid darken(#eaeaea, 7%);
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  transition: 0.1s;
+  background: linear-gradient(to right, #0e2d6b, #1f59d8);
+  color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.accordion-title:hover {
+  background: darken(#eaeaea, 7%);
+}
+.accordion-title i {
+  float: right;
+  transition: 0.2s;
+  opacity: 0.75;
+  color: #fff !important;
+  font-weight: normal;
+  -webkit-box-shadow: 5px 5px 10px -1px rgba(0,0,0,0.3);
+  -moz-box-shadow: 5px 5px 10px -1px rgba(0,0,0,0.3);
+  box-shadow: 5px 5px 10px -1px rgba(0,0,0,0.3);
+}
+.accordion-title > div {
+    padding: 10px 0px;
+}
+.accordion-title > h4 > sup {
+    display: block;
+    font-size: x-small;
+}
+
+.accordion-content {
+  display: none;
+  /* border: 1px solid #eaeaea; */
+  padding: 10px;
+  margin: 0;
+}
+.accordion-content input {
+    display: block;
+    margin: 10px auto 1px auto;
+    padding: 20px 5px;
+    font-size: large;
+}
+.expanded i.fa.fa-chevron-right {
+  transform: rotate(90deg);
+}
+
+.accordion-title {
+  display: flex;
+  padding: 20px 15px;
+  justify-content: space-between;
+  color: #fff;
+}

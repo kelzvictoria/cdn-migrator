@@ -1,0 +1,96 @@
+.StripeBackground {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  right: 0;
+  -webkit-transform: skewY(-12deg);
+  transform: skewY(-12deg);
+  pointer-events: none;
+}
+.StripeBackground.updated {
+  top: calc(50% + 275px);
+}
+.StripeBackground .stripe {
+  position: absolute;
+  top: auto;
+  left: 0;
+  right: 0;
+}
+.StripeBackground .stripe {
+  height: 155px;
+}
+StripeBackground .stripe {
+  position: absolute;
+  top: auto;
+  left: 0;
+  right: 0;
+}
+.StripeBackground .stripe.pattern:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1000px;
+  top: -1000px;
+  -webkit-transform: skew(0, 12deg);
+  transform: skew(0, 12deg);
+}
+.StripeBackground.updated .s2:after {
+  background: none;
+}
+.StripeBackground .s0 {
+  height: 5000px;
+  bottom: 10px;
+  /*background: -webkit-gradient(linear,left top,right top,from(#4dc076),to(#b3e895));*/
+  /*background: linear-gradient(90deg,#4dc076,#b3e895);*/
+  background: linear-gradient(
+    180deg,
+    rgb(14, 47, 111),
+    hsla(145, 68%, 46%, 0.15)
+  );
+  /*background: #f3f3f4;*/
+}
+.StripeBackground .s2 {
+  bottom: 310px;
+  /*bottom: calc(155px * 2);*/
+  bottom: calc(100px * 2);
+  right: calc(50% + 260px);
+  left: auto;
+  width: 30%;
+  min-width: 450px;
+  /*background: -webkit-gradient(linear,left top,right top,from(#0aab88),to(#3ebc7f));
+    background: linear-gradient(90deg,#0aab88,#3ebc7f);*/
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#0532a1),
+    to(#3ebc7f)
+  );
+  background: linear-gradient(90deg, #0532a1, #3ebc7f);
+  opacity: 0.75;
+  opacity: 0.75;
+}
+body.budgetplanner .StripeBackground .s0 {
+  background: linear-gradient(180deg, #0f2f70, hsla(288, 68%, 46%, 0.15));
+  /*background: #f3f3f4;*/
+}
+body.budgetplanner .StripeBackground .s2 {
+  background: linear-gradient(90deg, #9a0aab, #d8d338);
+}
+body.budgetplanner circle.donut-hole {
+  /*color: #e7e7e8;*/
+  color: #c4b7d2;
+}
+body.faq .StripeBackground .s0 {
+    background: #e4e9ee;
+}
+body.faq .StripeBackground .s2 {
+    background: -webkit-gradient( linear, left top, right top, from(#31315e), to(#7dadec) );
+    background: linear-gradient(90deg, #31315e, #7dadec);
+    opacity: 1;
+    background: #31315e;
+}  
+.StripeBackground .stripe.pattern {
+  overflow: hidden;
+}

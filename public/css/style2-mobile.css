@@ -1,0 +1,601 @@
+@media (max-width: 768px) {
+  /* show hambuger*/
+  .main.row.container.calculate-pensions,
+  #bp-row {
+    flex-direction: column-reverse !important;
+  }
+  #bp-row .three-quarter-row .row {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .main.budgetplanner {
+    padding-top: 0px;
+  }
+  #budgetform {
+    margin-top: 0px;
+  }
+  .menu-btn {
+    display: block;
+  }
+  .menu-bt:hover {
+    opacity: 0.5;
+  }
+  .main-nav {
+    height: 100%;
+    flex-direction: column;
+    align-items: inherit;
+  }
+  .main-nav .logo-n-name {
+    display: flex;
+  }
+  .main-nav ul.main-menu {
+    background-color: #fff;
+    display: none;
+    margin: -20px -15px 20px -15px !important;
+  }
+  .main-nav ul.main-menu li {
+    padding: 10px;
+    /*border-bottom: #ccc solid 1px;
+       */
+    font-size: 14px;
+  }
+  .main-nav ul.main-menu li:last-child {
+    border-bottom: 0;
+  }
+  .main-nav ul.main-menu.show {
+    transform: translateY(20px);
+    display: block;
+  }
+  .main-nav .main-menu li a {
+    color: #333 !important;
+    font-size: large;
+  }
+  .main-nav .main-menu li.active a {
+    color: #1989ff !important;
+  }
+
+  .pen-calculator-title.title,
+  .bp-title.title {
+    display: none;
+  }
+  .accordion-title {
+    display: inline-table;
+    justify-content: normal;
+  }
+  .accordion-title h3,
+  .accordion-title h3 sup {
+    display: block !important;
+    padding: 20px 0px 10px 0px !important;
+  }
+  .title .container p,
+  .goal-switch p,
+  .lump-slider p,
+  .amt-slider p,
+  .cur-pen-value-slider p,
+  .monthly-contr-slider p,
+  .voluntarily-contr-slider p,
+  .monthly-income-slider p,
+  .gender-div p {
+    font-size: 14px;
+  }
+  .slider {
+    width: 80% !important;
+  }
+  div.slidecontainer {
+    font-size: 10px !important;
+  }
+  .enquiries.container .en-right {
+    font-size: 12px;
+  }
+  .enquiries.container h2 {
+    font-size: 18px !important;
+  }
+  div.row .three-quarter-row {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .header .main-menu li > a:hover,
+  .header .main-menu li > a:focus {
+    border: none;
+  }
+  .header .main-menu li.active > a {
+    border: none;
+    color: #1930a1 !important;
+  }
+  .header .main-menu li.active {
+    background-color: #fff;
+  }
+
+  /*---- Footer responsiveness ----*/
+  .footer {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100% !important;
+    /*font-family: "BentonSansBook" !important;
+    */
+  }
+  .footer .half-row {
+    width: 100%;
+    max-width: 100%;
+  }
+  div.footer-small {
+    height: 100% !important;
+  }
+  .footer-small-content {
+    max-width: 100%;
+    margin-left: 0px;
+    padding: 10px;
+  }
+  .footer-small-content > div {
+    padding: 10px 0px;
+  }
+  .footer-small-content .top {
+    flex-direction: column;
+  }
+  .enquiries.container {
+    padding: 20px 0;
+  }
+  .about-us.container h2 {
+    font-size: 18px;
+  }
+  .about-us.container p {
+    font-size: 14px;
+  }
+  .app-download {
+    height: 100%;
+  }
+  .align-app-download-div {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .app-download-content {
+    flex-wrap: wrap;
+  }
+  .download-svg {
+    display: flex;
+  }
+  .app-download-content {
+    justify-content: space-between !important;
+  }
+  .align-app-download-div p {
+    font-size: 20px;
+    /*font-family: "BentonSansBook" !important;
+    */
+  }
+  .footer-small {
+    left: auto;
+    bottom: auto;
+    position: relative;
+  }
+  .enquiries h3,
+  .align-app-download-div h3,
+  .top h3 {
+    font-size: 13px !important;
+    line-height: 18px;
+    padding: 5px 0px;
+  }
+  .footer-small-content p {
+    font-size: 12px;
+  }
+  .footer-small-content.container {
+    flex-direction: column;
+  }
+  .footer-small-content .footer-inner-text {
+    max-width: 100%;
+  }
+
+  /* .main.budgetplanner {
+        display: none;
+   }
+    */
+  #progressbar li {
+    color: transparent;
+  }
+  #progressbar {
+    margin-bottom: 0px;
+  }
+  #progressbar li:before {
+    margin: 0 auto 0px auto;
+  }
+  .main-nav ul.main-menu li {
+    font-size: 12px;
+  }
+  div#bp-row {
+    flex-direction: column;
+  }
+  h3.fs-title {
+    display: none;
+    text-align: center;
+  }
+  /* .cssprogresscontainer {
+        display: none;
+   }
+    */
+  .container.budget-planner-container {
+    /*background-color: #f7f8fc !important;
+       */
+    padding-top: 0px;
+  }
+  .container.budget-planner-container {
+    align-items: stretch !important;
+  }
+  .three-quarter-row .row {
+    flex-direction: column;
+  }
+  .three-quarter-row .row .col-6 {
+    max-width: 100%;
+  }
+  .form-nav {
+    display: none;
+    width: 48% !important;
+    height: 46px;
+    border-radius: 0px !important;
+    font-size: 14px !important;
+    text-transform: uppercase;
+    margin: 40px 0px 0px 0px !important;
+  }
+  .end-fs .form-nav {
+    font-size: 10px !important;
+  }
+  input.previous.action-button-previous.form-nav {
+    float: left;
+  }
+  input.next.action-button.form-nav,
+  input.submit.action-button.form-nav {
+    float: right;
+  }
+  .mi-fs .next {
+    float: left !important;
+    /*background-color: #bfbfbf !important;
+       */
+    background-color: #0089ff !important;
+    display: none;
+  }
+  #bp-row .one-quarter-row {
+    max-width: 100%;
+    width: 100%;
+  }
+  .expenses-summary-div {
+    padding: 0px 0px;
+  }
+  /* .expenses-summary-div {
+        font-size: 12px;
+        margin-bottom: 40px;
+   }
+    */
+  .get-started .guides {
+    display: block;
+  }
+  /* .three-quarter-row {
+        display: none;
+   }
+    */
+  .calculate-pensions .guides,
+  .title .container .get-started {
+    display: block;
+  }
+  .title .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  button.get-started.btn {
+    margin-top: 40px;
+    background: #f7f8fc;
+    border: 3px solid #0089ff;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: #0089ff;
+    outline: none;
+  }
+  .guides {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(31, 89, 216, 0.2);
+  }
+  .guides .guide {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    /*font-family: "BentonSansBook" !important;
+       */
+    padding: 40px;
+    color: #1a051d;
+  }
+  .fa-input {
+    color: #0033a1 !important;
+    padding-bottom: 10px !important;
+  }
+  .guide-icon {
+    border: 2px solid #0033a1;
+    padding: 5px;
+    border-radius: 20px !important;
+  }
+  .guide h3 {
+    margin-bottom: 10px;
+  }
+  .pencalc {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    /*font-family: "BentonSans";
+       */
+    color: #1a051d;
+    text-align: center;
+    display: block !important;
+  }
+  .parameters-input-table .page-one 
+   /*, .parameters-input-table .page-two*/ {
+    display: flex;
+    flex-direction: column !important;
+  }
+  /* .parameters-input-table .page-two {
+        display: none;
+   }
+    */
+  .gender-div {
+    order: 1;
+  }
+  .age-div {
+    order: 2;
+  }
+  .pencalc-center {
+    order: 5;
+  }
+
+  .other-investments-options {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .age-div {
+    height: 100%;
+  }
+  .pencalc-center {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid rgba(31, 89, 216, 0.2);
+    margin-top: 20px;
+  }
+  button.pencalc-next-btn.btn {
+    margin-top: 20px;
+    background: #f7f8fc;
+    border: 3px solid #25c769;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: #25c769;
+  }
+  button.pencalc-btn.btn {
+    margin-top: 20px;
+    background: #f7f8fc;
+    border: 3px solid #25c769;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: #25c769;
+  }
+  h3.form-num {
+    color: #0089ff;
+    /*font-family: "BentonSans";
+       */
+    margin-top: 30px;
+  }
+  /* .other-investments {
+        display: flex;
+   }
+    */
+  /* .pension-value, */
+  .desired-amt-mobile,
+  .current-amt-mobile,
+  .contrib-amt-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0px;
+    text-align: center;
+    border-bottom: 1px solid rgba(31, 89, 216, 0.2);
+  }
+  .pension-value {
+    display: none;
+    /* remove it later */
+  }
+  .desired-amt-mobile h3,
+  .current-amt-mobile h3,
+  .contrib-amt-mobile h3 {
+    font-size: 18px !important;
+  }
+
+  input#desired-amt-mobile,
+  input#current-amt-mobile,
+  input#contribution-amt-mobile {
+    height: 36px !important;
+    width: 100%;
+    font-size: 28px;
+    text-align: center;
+    background-color: #f7f8fc;
+    border-width: 0;
+  }
+  .page-two input:focus {
+    outline: 2px solid #0089ff;
+  }
+  h3.value {
+    font-size: 28px;
+  }
+  .calc-result img {
+    height: 200px;
+    width: 200px;
+  }
+  .calc-result {
+    /* display: flex;
+        */
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10;
+    margin-top: 20px;
+    /* display: none;
+        */
+  }
+  .show-calc-result {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h3.h3-result {
+    color: #0089ff;
+    font-size: 18px;
+  }
+  .view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .fa-eye:before {
+    color: #1f59d8;
+    margin-right: 5px;
+  }
+  .view p {
+    color: #1f59d8;
+  }
+
+  button.pencalc-next-btn.next-page.btn.mb-10px {
+    color: #0089ff;
+    border-color: #0089ff;
+    margin-top: 40px;
+  }
+  .m-withdrawal {
+    display: none;
+  }
+  /* .get-results {
+        display: none;
+   }
+    */
+  .show-get-results {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 16px;
+    align-items: center;
+    font-family: "Open Sans";
+    background-color: #fff;
+  }
+  .page-two {
+    display: none;
+  }
+  .show-parameters-input-table-page-two {
+    display: block !important;
+  }
+  .hide-parameters-input-table-page-one {
+    display: none !important;
+  }
+  .align-app-download-div img {
+    height: 40px;
+    width: 120px;
+  }
+  .end-fs img {
+    height: 100%;
+    width: 100%;
+  }
+  .end-fs h3 {
+    text-align: center;
+    font-size: 24px;
+    /*font-family: "BentonSansBook" !important;
+       */
+  }
+  .end-fs-bold {
+    /*font-family: "BentonSans" !important;
+       */
+    font-size: 24px;
+  }
+  .end-fs p {
+    font-size: 15px !important;
+  }
+
+  .main.row.container.calculate-pensions {
+    display: flex;
+    flex-direction: column;
+  }
+  .one-quarter-row.amt-guage-meter {
+    max-width: 100%;
+    width: 100%;
+  }
+  .one-quarter-row .pen-calculator-title {
+    display: none;
+  }
+  .pen-calculator-title .bottom h5 {
+    display: none;
+  }
+
+  .main.faq.container ol {
+    background: none;
+  }
+
+  .faq-item.title.pen-calculator-title {
+    display: block;
+  }
+}
+@media (min-width: 501px) and (max-width: 767px) {
+}
+@media (min-width: 769px) {
+  #bp-row .three-quarter-row {
+    max-width: 55% !important;
+    width: 55% !important;
+  }
+  .enquiries.container {
+    /* padding: 80px 160px 80px 0;
+        */
+    /* float: right;
+        */
+    width: 70% !important;
+  }
+  .form-nav {
+    width: 48% !important;
+    height: 46px;
+    border-radius: 0px !important;
+    font-size: 14px !important;
+    margin: 10px 0px 0px 0px !important;
+  }
+  input.previous.action-button-previous.form-nav {
+    float: left;
+    display: none;
+  }
+  input.next.action-button.form-nav,
+  input.submit.action-button.form-nav {
+    float: right;
+  }
+  .mi-fs .next {
+    float: left !important;
+    /*background-color: #bfbfbf !important;
+       */
+    background-color: #0089ff !important;
+    display: none;
+  }
+  .end-fs h3 {
+    font-size: 30px;
+    /*font-family: "BentonSansBook" !important;
+       */
+  }
+}
+
+p.answer.text {
+  padding-bottom: 10px;
+  text-align: justify;
+}
+
+h1.question.text-header {
+  text-align: center;
+}
+
+h1.question.text-header.smaller {
+  font-size: 18px;
+}
+/*
+.bp-advise {
+  display: none;
+}
+*/

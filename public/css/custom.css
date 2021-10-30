@@ -1,0 +1,245 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+::selection {
+  color: #fff;
+  background: #0089ff;
+}
+.wrapper {
+  width: 430px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: 7px 7px 12px rgba(0, 0, 0, 0.05);
+}
+.wrapper header {
+  color: #0089ff;
+  font-size: 20px;
+  /* 27px; 
+  font-weight: 600;*/
+  text-align: center;
+}
+
+.wrapper p,
+.fa-times {
+  cursor: pointer;
+}
+.wrapper form {
+  /* height: 167px; */
+  display: flex;
+  /* cursor: pointer; */
+  /* margin: 30px 0; */
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 2px dashed #0089ff;
+}
+form :where(i, p) {
+  color: #0089ff;
+}
+form i {
+  font-size: 50px;
+}
+form p {
+  margin-top: 15px;
+  font-size: 16px;
+}
+section .row {
+  margin-bottom: 10px;
+  background: #e9f0ff;
+  list-style: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+section .row i {
+  color: #0089ff;
+  font-size: 30px;
+}
+section .details span {
+  font-size: 14px;
+}
+.progress-area .row .content {
+  width: 100%;
+  margin-left: 15px;
+}
+.progress-area .details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+  justify-content: space-between;
+}
+.progress-area .content .progress-bar {
+  height: 6px;
+  width: 100%;
+  margin-bottom: 4px;
+  background: #fff;
+  border-radius: 30px;
+}
+.content .progress-bar .progress {
+  height: 100%;
+  width: 0%;
+  background: #0089ff;
+  border-radius: inherit;
+}
+.uploaded-area {
+  max-height: 232px;
+  /* overflow-y: scroll; */
+}
+.uploaded-area.onprogress {
+  max-height: 150px;
+}
+.uploaded-area::-webkit-scrollbar {
+  width: 0px;
+}
+.uploaded-area .row .content {
+  display: flex;
+  align-items: center;
+}
+.uploaded-area .row .details {
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+  margin-right: 14px;
+}
+.uploaded-area .row .details .size {
+  color: #404040;
+  font-size: 11px;
+}
+.uploaded-area i.fa-check {
+  font-size: 16px;
+}
+
+/* .main.calculate-pensions */
+.main.calculate-pensions {
+  min-height: 550px !important;
+}
+
+.outs-docs {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn-download {
+  background-color: #0089ff;
+}
+
+#btn-auth {
+  background-color: #0089ff;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn-download-div {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  padding: 1rem 0 !important;
+}
+
+.uploaded-area {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#message {
+  margin-top: 0.5rem;
+}
+
+section .row i {
+  font-size: 20px;
+}
+
+.fa-times {
+  color: #e74c3c !important;
+}
+
+.fa-file-alt {
+  color: #2ecc71 !important;
+}
+
+.display--none {
+  display: none !important;
+}
+
+#message-text1 {
+  background: #2ecc71;
+}
+
+#message-text2 {
+  /* display: flex !important; */
+  background: #f1c40f;
+}
+
+#message-text3 {
+  /* display: flex !important; */
+  background: #e74c3c;
+  margin: 0 5px !important;
+}
+
+#message-text1,
+#message-text2,
+#message-text3 {
+  color: #fff;
+  padding: 5px 15px;
+  margin-bottom: 0.5rem;
+  border-color: transparent !important;
+}
+
+.fa-times {
+  font-size: 25px !important;
+}
+
+#cancel-btn {
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.btnCancel {
+  color: #a29b8f !important;
+}
+
+.btnCancel:hover {
+  background: #e74c3c;
+  color: #fff !important;
+}
+
+.refresh-page {
+  margin-top: 5px;
+}
+
+#success {
+  background-color: red !important;
+}
+
+.progress {
+  display: flex;
+  justify-content: center;
+}
+
+#logout
+/* ,#login  */ {
+  display: none;
+}

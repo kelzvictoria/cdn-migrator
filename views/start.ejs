@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta class="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Start :: RSA Registration :: Stanbic IBTC Pension Managers Limited</title>
+    <link rel="shortcut icon" href='images/favicons/favicon.ico'>
+    <link rel="apple-touch-icon" sizes="57x57" href='images/favicons/apple-icon-57x57.png'>
+    <link rel="apple-touch-icon" sizes="60x60" href='images/favicons/apple-icon-60x60.png'>
+    <link rel="apple-touch-icon" sizes="72x72" href='images/favicons/apple-icon-72x72.png'>
+    <link rel="apple-touch-icon" sizes="76x76" href='images/favicons/apple-icon-76x76.png'>
+    <link rel="apple-touch-icon" sizes="114x114" href='images/favicons/apple-icon-114x114.png'>
+    <link rel="apple-touch-icon" sizes="120x120" href='images/favicons/apple-icon-120x120.png'>
+    <link rel="apple-touch-icon" sizes="144x144" href='images/favicons/apple-icon-144x144.png'>
+    <link rel="apple-touch-icon" sizes="152x152" href='images/favicons/apple-icon-152x152.png'>
+    <link rel="apple-touch-icon" sizes="180x180" href='images/favicons/apple-icon-180x180.png'>
+    <link rel="icon" type="image/png" sizes="192x192" href='images/favicons/android-icon-192x192.png'>
+    <link rel="icon" type="image/png" sizes="32x32" href='images/favicons/favicon-32x32.png'>
+    <link rel="icon" type="image/png" sizes="96x96" href='images/favicons/favicon-96x96.png'>
+    <link rel="icon" type="image/png" sizes="16x16" href='images/favicons/favicon-16x16.png'>
+    <link rel="manifest" href='images/favicons/manifest.json'>
+    <meta name="msapplication-config" content='images/favicons/browserconfig.xml' />
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content='images/favicons/ms-icon-144x144.png'>
+    <meta name="theme-color" content="#ffffff">
+    <link rel='stylesheet' href='css/style.min.css' />
+    <link rel='stylesheet' href='css/loading.css' />
+    <link rel='stylesheet' href='css/custom.css' />
+</head>
+<body class="loading">
+	<!-- navbar -->
+	<div class="navbar">
+		<nav class="nav__mobile"></nav>
+		<div class="container">
+			<div class="navbar__inner">
+				<a href="./" class="navbar__logo"></a>
+				<nav class="navbar__menu">
+					<ul>
+                        <li><div><a href="./">Home</a></div></li>
+                        <!--<li><div><a href="./login">Login</a></div></li>-->
+                        <li><div><a href="./#contact">Contact Us</a></div></li>
+					</ul>
+				</nav>
+				<div class="navbar__menu-mob"><a href="" id='toggle'><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" class=""></path></svg></a></div>
+			</div>
+		</div>
+	</div>
+	<!-- Authentication pages -->
+	<div class="auth">
+		<div id="step1" class="container">
+			<div class="auth__inner">
+                <div class="auth__auth auth__step">
+                    <h2><%=registrationType == 'MP' ? 'Micro Pension Account' : 'Retirement Savings Account'%></h2>
+                    <p>
+                        <input name="application_type" type="radio" id="application_new" />
+                        <label for="application_new">Start a new application</label>
+                    </p>
+                    <p>
+                        <input name="application_type" type="radio" id="application_update" />
+                        <label for="application_update">Update an ongoing application</label>
+                    </p>
+                    <p class="auth__divider" />
+                    <p>
+                        <input type="checkbox" id="application_confirm">
+                        <label for="application_confirm"><span class="auth__footnote">I confirm that I have not registered with any other PFA</span></label>
+                    </p>
+                    <div>
+                        <button id="step1_forward" class="button button__primary" disabled>Next</button>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div id="step2" class="container">
+			<div class="auth__inner">
+                <div class="auth__auth auth__step">
+                    <div>
+                        <label for="mobile_phone_number">Mobile Phone Number</label>
+                        <input type="number" id="mobile_phone_number" placeholder="e.g. 08012345678">
+                    </div>
+                    <div>
+                        <label for="reference_code">8-digit Reference Code</label>
+                        <input type="number" id="reference_code" placeholder="" maxlength="8" min="0" max="99999999">
+                    </div>    
+                    <div>
+                        <a  id="step2_back" href="#" class="button">Back</a>
+                        <button id="step2_forward" class="button button__primary" disabled>Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="step3" class="container">
+            <div class="auth__inner">
+				<div class="auth__auth">
+					<h1 class="auth__title">
+                        <!-- <img src="./images/icon.png"> -->
+                        <div class="lds-ripple"><div></div><div></div></div>
+                    </h1>
+                    <p class="loading_msg">Please wait...</p>
+                    <input id="_csrf" type="hidden" name="_csrf" value="<%=csrfToken%>"/>
+					<form method="post" id="auth_redirect">
+                        <input id="baseurl" name="baseurl" type="hidden">
+                        <input id="authtoken" name="authtoken" type="hidden">
+                        <input id="refcode" name="reference_code" type="hidden">
+                        <input id="registration_type" name="registration_type" type="hidden" value="<%=registrationType%>">
+                    </form>
+				</div>
+			</div>
+		</div>
+        <div id="step4" class="container">
+            <div class="auth__inner">
+				<div class="auth__auth">
+                    <p id="server_error" class="loading_msg">Sorry, your request was denied</p>
+                    <div>
+                        <button id="step4_back" class="button button__primary">Back</button>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src='js/app.min.js'></script>
+<script src='js/start.js'></script>
+</body>
+</html>

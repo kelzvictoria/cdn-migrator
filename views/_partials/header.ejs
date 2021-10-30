@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="msapplication-config"
+      content="./img/favicons/browserconfig.xml"
+    />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="./img/favicons/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="./css/style2.css" />
+    <link rel="stylesheet" href="./css/slider.css" />
+    <link
+      rel="stylesheet"
+      href="./ext/cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./ext/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="./css/stripe.css" />
+    <link rel="stylesheet" href="./css/radial-progress-bar.css" />
+    <link rel="stylesheet" href="./css/tabs.css" />
+
+    <link
+      rel="stylesheet"
+      href="./ext/cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+    />
+    <!--<link rel="stylesheet" href="./css/accordion.css" />-->
+    <link rel="stylesheet" href="./css/custom.css" />
+
+    <title>CDN Migrator</title>
+  </head>
+
+  <body class="<%=(pageName ==="calculatepensions") ? "epc" : (pageName ===
+  "budgetplanner") ? "budgetplanner" : "faq" %> ">
+  <div class="StripeBackground updated">
+    <div class="stripe s0"></div>
+    <div class="stripe s2 pattern"></div>
+  </div>
+  <div>
+    <div class="menu-btn">
+      <!-- <i class="fas fa-bars fa-2x"></i> -->
+      <a href="javascript:;" id="toggle" aria-hidden="false" class=""
+        ><svg
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+            class=""
+          ></path></svg
+      ></a>
+    </div>
+    <div class="header">
+      <div class="container">
+        <!-- Nav -->
+        <nav class="main-nav">
+          <div class="logo-n-name">
+            <!--<a href="/view2">     <img src="./img/logo.png" alt="StanbicIbtc" class="logo" /></a>-->
+            <a href="..<%=appPath%>" class="logo"></a>
+            <!--   <img src="./logo.png" alt="StanbicIbtc" class="logo" /> 
+            <ul class="brand-name">
+              <li class="stanbicibtc"><a href="/view2">Stanbic IBTC</a></li>
+              <li class="pensions-managers">
+                >Pension Managers
+              </li>
+            </ul>-->
+          </div>
+
+          <ul class="main-menu">
+            <li class="nav-item">
+              <div><a href="..<%=appPath%>" id="logout">Logout</a></div>
+            </li>
+            <li class="nav-item">
+              <div>
+                <a
+                  href="<%=realm_url%>/oauth/authorize/?client_id=<%=client_id%>&response_type=token&redirect_uri=<%=redirect_uri%>&scope=*.*&state="
+                  id="login"
+                  >Login</a
+                >
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</html>

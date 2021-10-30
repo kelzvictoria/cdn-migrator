@@ -1,0 +1,1545 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "BentonSans";
+  src: url("../../fonts/bentonsans/bentonsansbold/BentonSansBold.otf");
+}
+
+@font-face {
+  font-family: "BentonSansRegular";
+  src: url("../../fonts/bentonsans/bentonsansregular/BentonSansRegular.otf");
+}
+
+@font-face {
+  font-family: "BentonSansBook";
+  src: url("../../fonts/bentonsans/bentonsansbook/BentonSansBook.otf");
+}
+
+body {
+  background: #f7f8fc;
+  color: #000;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+a {
+  color: #262626;
+  text-decoration: none;
+}
+
+.bold {
+  font-family: "BentonSansBold" !important;
+  font-weight: 900 !important;
+  font-size: 18px;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 88%;
+  max-width: 1080px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.mw {
+  max-width: 1100px;
+}
+
+.header {
+  font-family: "BentonSans" !important;
+  background-color: #0033a1;
+}
+
+/* Nav */
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 20px 0;
+  font-size: 10px;
+}
+
+.main-nav .logo {
+  height: 45px;
+}
+
+.main-nav ul.brand-name {
+  display: block;
+  flex: 1;
+  margin-left: 2px;
+}
+
+.logo-n-name {
+  display: flex;
+}
+
+.main-nav ul.brand-name li.pensions-managers {
+  margin-left: 10px;
+}
+
+.main-nav ul.main-menu {
+  display: flex;
+}
+
+.main-nav ul.main-menu li {
+  padding: 0 20px;
+}
+
+.main-nav ul li a {
+  padding-bottom: 4px;
+  color: #fff !important;
+}
+
+ul.main-menu li {
+  font-size: 14px;
+  text-transform: uppercase !important;
+}
+
+.header .main-menu li > a:hover,
+.header .main-menu li > a:focus {
+  border-bottom: 2px solid #fff;
+}
+
+.header .main-menu li.active > a {
+  border-bottom: 2px solid #fff;
+}
+
+li.stanbicibtc {
+  font-size: 16px;
+}
+
+.title {
+  background-color: #f2f2f2;
+  color: #0033a1;
+  text-align: center;
+}
+
+.title .container {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.title .container h1 {
+  font-size: 22px;
+  font-family: "BentonSans";
+}
+
+.title .container p {
+  font-family: "BentonSansBook" !important;
+  font-size: 18px;
+  color: #0033a1b0;
+}
+
+.main.row.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.row .three-quarter-row {
+  max-width: 55% !important;
+  width: 55% !important;
+  padding: 40px 3px;
+  color: #1a051d;
+  font-family: "BentonSansRegular";
+}
+
+.one-quarter-row.amt-guage-meter {
+  max-width: 25%;
+  width: 25%;
+}
+
+#bp-row .one-quarter-row {
+  max-width: 45%;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+div.row .one-quarter-row {
+  padding: 40px 3px;
+  color: #1a051d;
+  font-family: "BentonSansRegular";
+}
+
+div.slidecontainer {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  font-size: 12px !important;
+}
+
+.a-left,
+.a-right {
+  width: 20% !important;
+  max-width: 20% !important;
+}
+
+.left,
+.right {
+  width: 20% !important;
+  max-width: 20% !important;
+  text-align: center;
+}
+
+.left label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.a-right label {
+  float: right !important;
+}
+
+.right label {
+  float: right !important;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.div-spacing {
+  padding-top: 20px;
+  margin-bottom: 10px;
+}
+
+.center {
+  width: 60% !important;
+  max-width: 60% !important;
+}
+
+.slider-selected-value {
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  border: 2px solid #1f59d8;
+  background: #f7f8fc;
+}
+
+/* #desired_amt,
+#cpv,
+#mc,
+#vc,
+#mi {
+  display: none;
+} */
+
+.amt-slider p,
+.cur-pen-value-slider p,
+.monthly-contr-slider p,
+.voluntarily-contr-slider p,
+.monthly-income-slider p {
+  padding-top: 2vh;
+  padding-bottom: 5vh;
+  text-align: center;
+  font-size: 16px;
+}
+
+.gender-div {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 20px 40px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.gender-div [type="radio"],
+.other-investments-options [type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.gender-div [type="radio"] + i,
+.other-investments-options [type="radio"] + span {
+  cursor: pointer;
+}
+
+.gender-div [type="radio"]:checked + i,
+.other-investments-options [type="radio"]:checked + span {
+  color: #1f59d8 !important;
+}
+
+.female p,
+.male p {
+  font-size: 12px !important;
+}
+
+.fa,
+.fas {
+  color: #c4c4c4 !important;
+}
+
+.ui-slider-range.ui-corner-all.ui-widget-header {
+  background-color: #1f59d8 !important;
+}
+
+.ui-slider .ui-slider-handle {
+  width: 1.8em !important;
+  height: 1.6em !important;
+}
+
+.age-div {
+  align-items: center;
+
+  justify-content: space-between;
+  height: 150px;
+
+  font-size: 13px;
+
+  padding: 40px 0;
+}
+
+.age-values {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.amt-guage-meter {
+  position: fixed;
+  bottom: 0%;
+  opacity: 1;
+  right: 5%;
+  text-align: center;
+  background-color: #f7f8fc;
+}
+
+.mlr {
+  margin: 0 10px 0 10px;
+}
+
+.btn {
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-bottom: 0;
+
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  width: 250px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.btn-summary {
+  background-color: #bfbfbf;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.footer {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  height: 380px !important;
+  font-family: "BentonSansBook" !important;
+}
+
+.footer .half-row {
+  width: 50%;
+  max-width: 50%;
+}
+
+.about-us.container {
+  padding: 20px;
+  float: left;
+}
+
+.half-row.en {
+  background: #1f59d8;
+  background: -webkit-linear-gradient(to right, #0e2d6b, #1f59d8);
+  background: linear-gradient(to right, #0e2d6b, #1f59d8);
+
+  color: #fff !important;
+}
+
+.half-row.about {
+  background-color: #fff !important;
+  color: #6f6f6f !important;
+}
+
+.collapsible {
+  color: #0083ff !important;
+}
+
+.about .btn {
+  background-color: #0083ff;
+  color: #fff;
+}
+
+.about .btn:hover {
+  opacity: 0.9;
+}
+
+.app-download {
+  height: 100px;
+  width: 100%;
+  color: #6f6f6f !important;
+}
+
+.enquiries.container h2 {
+  margin-bottom: 15px;
+}
+
+.enquiries.container .en-right {
+  float: right;
+  margin-right: 15px;
+  font-size: 16px;
+}
+
+.enquiries.container .en-left {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-family: "BentonSansBold";
+}
+
+.align-app-download-div {
+  padding: 20px 0 20px 20px;
+  max-width: 65%;
+
+  width: 65%;
+}
+
+.app-download-content {
+  align-items: center !important;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.align-app-download-div p {
+  font-size: 25px;
+}
+
+.align-app-download-div img {
+  height: 60px;
+  width: 160px;
+}
+
+.footer-small {
+  background-color: #082140;
+  color: #fff;
+  height: 120px;
+  font-family: bentonsansbook;
+}
+
+.footer-small a {
+  color: #fff !important;
+}
+
+.footer-small-content {
+  padding: 20px;
+  max-width: 50%;
+  margin-left: 130px;
+  text-align: justify;
+}
+
+.footer-small-content p {
+  font-size: 12px;
+}
+
+.footer-small-content .top {
+  font-family: bentonsansbold !important;
+  justify-content: space-between;
+  font-size: 12px;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.mb-10px {
+  margin-bottom: 10px;
+}
+
+.main.budgetplanner {
+  min-height: 780px !important;
+}
+
+.main.budgetplanner p {
+  text-align: center;
+  color: #1a051dad;
+  font-size: 19px;
+  font-family: bentonsansregular;
+  padding-top: 40px;
+}
+
+#budgetform {
+  text-align: center;
+  position: relative;
+  margin-top: 30px;
+  width: 100%;
+}
+
+#budgetform fieldset {
+  text-align: start;
+  background: #f7f8fc;
+  border: 0 none;
+  border-radius: 0px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#budgetform fieldset:not(:first-of-type) {
+  display: none;
+}
+
+#budgetform .action-button {
+  width: 100px;
+  background: #0089ff;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  outline: none;
+}
+
+#budgetform .action-button-previous {
+  width: 100px;
+  background: #bfbfbf;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  outline: none;
+}
+
+#budgetform hr {
+  background-color: #0033a1;
+  margin: auto;
+  height: 1px;
+  border-width: 0;
+}
+
+.fs-title {
+  font-size: 20px;
+  color: #1a051d;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  font-family: "Bentonsans";
+  font-weight: bold;
+}
+
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  counter-reset: step;
+  display: flex;
+}
+
+#progressbar li {
+  list-style-type: none;
+  font-family: "bentonsansbook";
+  color: #000;
+  text-transform: capitalize;
+  font-size: 15px;
+  width: 16.67%;
+  float: left;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+#progressbar li.active {
+  font-weight: 900;
+  font-family: "bentonsansregular" !important;
+}
+
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 34px;
+  height: 34px;
+  line-height: 36px;
+  display: block;
+  font-size: 15px;
+  color: #787878;
+  border: 3px solid #dadada;
+  border-radius: 25px;
+  margin: 0 auto 30px auto;
+  background-color: #f7f8fc;
+}
+
+#progressbar li:after {
+  content: "";
+  width: 50%;
+  height: 5px;
+  background: #c4c4c4;
+  position: absolute;
+  left: -25%;
+  top: 14px;
+  z-index: -1;
+}
+
+#progressbar li:first-child:after {
+  content: none;
+}
+
+#progressbar li.active:after {
+  background: #0033a1;
+  color: white;
+  border: 1px solid #0033a1;
+}
+
+#progressbar li.active:before {
+  background: #0033a1;
+  color: white;
+  border: 3px solid #0033a1;
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  font-size: 15px;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px !important;
+  margin-bottom: 25px;
+}
+
+.mi-fs .row,
+.he-fs .row,
+.te-fs .row,
+.ee-fs .row,
+.pe-fs .row,
+.s-fs .row,
+.end-fs .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.row.col-6 label {
+  font-family: "BentonSansBook" !important;
+}
+
+.input-amt {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 15px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  margin-top: 10px;
+  border-width: 0;
+  border-bottom: 1px solid #0033a1;
+}
+
+div#bp-row {
+  display: flex;
+}
+
+.cssprogresscontainer {
+  float: right;
+}
+
+#chartvalue p {
+  padding-top: 0;
+  color: #1a051d;
+}
+
+.expenses-summary {
+  display: flex;
+}
+
+.expenses-summary-div {
+  padding: 0 40px;
+}
+
+.expenses-summary.table-title,
+.expenses-summary.personal,
+.expenses-summary.expenses,
+.expenses-summary.savings,
+.expenses-summary.cash {
+  border-bottom: 2px solid #0033a1 !important;
+}
+
+.fa-housing {
+  color: #119bd2 !important;
+}
+
+.fa-transportation {
+  color: #8363f9 !important;
+}
+
+.fa-education {
+  color: #fdc42a !important;
+}
+
+.fa-personal {
+  color: #fe67ad !important;
+}
+
+.float-left h3,
+.float-left .expense-group {
+  float: left;
+}
+
+.float-right h3 {
+  float: right;
+}
+
+.col-6.float-left,
+.col-6.float-right {
+  padding-bottom: 0px !important;
+  padding-top: 5px;
+  margin-bottom: 5px;
+}
+
+.menu-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 1;
+  display: none;
+}
+
+.get-started {
+  display: none;
+}
+
+.pencalc-center {
+  display: none;
+}
+
+.pension-value,
+.desired-amt-mobile,
+.current-amt-mobile,
+.contrib-amt-mobile,
+.calc-result,
+.get-results,
+.other-investments {
+  display: none;
+}
+
+.amt-slider,
+.cur-pen-value-slider,
+.monthly-contr-slider,
+.voluntarily-contr-slider,
+.monthly-income-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  /* show hambuger*/
+
+  .menu-btn {
+    display: block;
+  }
+
+  .menu-bt:hover {
+    opacity: 0.5;
+  }
+
+  .main-nav {
+    height: 100%;
+    flex-direction: column;
+    align-items: inherit;
+  }
+
+  .main-nav .logo-n-name {
+    display: flex;
+  }
+
+  .main-nav ul.main-menu {
+    display: none;
+  }
+
+  .main-nav ul.main-menu li {
+    padding: 10px;
+    border-bottom: #ccc solid 1px;
+    font-size: 14px;
+  }
+
+  .main-nav ul.main-menu li:last-child {
+    border-bottom: 0;
+  }
+
+  .main-nav ul.main-menu.show {
+    transform: translateY(20px);
+    display: block;
+  }
+
+  /*---- Footer responsiveness ----*/
+
+  .footer {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100% !important;
+    font-family: "BentonSansBook" !important;
+  }
+
+  .footer .half-row {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  div.footer-small {
+    height: 100% !important;
+  }
+
+  .footer-small-content {
+    max-width: 100%;
+    margin-left: 0px;
+  }
+
+  .footer-small-content .top {
+    flex-direction: column;
+  }
+
+  .enquiries.container {
+    padding: 40px 0;
+  }
+
+  .app-download {
+    height: 100%;
+  }
+
+  .align-app-download-div {
+    padding: 20px 20px 20px 20px;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .app-download-content {
+    flex-wrap: wrap;
+  }
+
+  .download-svg {
+    display: flex;
+  }
+
+  .app-download-content {
+    justify-content: space-between !important;
+  }
+
+  .align-app-download-div p {
+    font-size: 20px;
+    font-family: "BentonSansBook";
+  }
+}
+
+@media (max-width: 500px) {
+  .title .container p,
+  .amt-slider p,
+  .cur-pen-value-slider p,
+  .monthly-contr-slider p,
+  .voluntarily-contr-slider p,
+  .monthly-income-slider p,
+  .gender-div p {
+    font-size: 14px;
+  }
+
+  .slider {
+    width: 80% !important;
+  }
+
+  div.slidecontainer {
+    font-size: 10px !important;
+  }
+
+  .enquiries.container .en-right {
+    font-size: 12px;
+  }
+
+  .enquiries.container h2 {
+    font-size: 18px !important;
+  }
+
+  div.row .three-quarter-row {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .amt-guage-meter {
+    display: none;
+  }
+
+  .footer {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100% !important;
+    font-family: "BentonSansBook" !important;
+  }
+
+  .footer .half-row {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  div.footer-small {
+    height: 100% !important;
+  }
+
+  .footer-small-content {
+    max-width: 100%;
+    margin-left: 0px;
+  }
+
+  .footer-small-content .top {
+    flex-direction: column;
+  }
+
+  .enquiries.container {
+    /* padding: 40px 0; */
+    padding: 20px 0;
+  }
+
+  .about-us.container h2 {
+    font-size: 18px;
+  }
+
+  .about-us.container p {
+    font-size: 14px;
+  }
+
+  .app-download {
+    height: 100%;
+  }
+
+  .align-app-download-div {
+    padding: 20px 20px 20px 20px;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .app-download-content {
+    flex-wrap: wrap;
+  }
+
+  .download-svg {
+    display: flex;
+  }
+
+  .app-download-content {
+    justify-content: space-between !important;
+  }
+
+  .align-app-download-div p {
+    font-size: 20px;
+    font-family: "BentonSansBook";
+  }
+
+  /* .main.budgetplanner {
+    display: none;
+  } */
+
+  #progressbar li {
+    color: transparent;
+  }
+
+  #progressbar {
+    margin-bottom: 0px;
+  }
+
+  #progressbar li:before {
+    margin: 0 auto 0px auto;
+  }
+
+  .main-nav ul.main-menu li {
+    font-size: 12px;
+  }
+
+  div#bp-row {
+    flex-direction: column;
+  }
+
+  h3.fs-title {
+    text-align: center;
+  }
+
+  .three-quarter-row .row {
+    flex-direction: column;
+  }
+
+  .three-quarter-row .row .col-6 {
+    max-width: 100%;
+  }
+
+  .form-nav {
+    width: 48% !important;
+    height: 46px;
+    border-radius: 0px !important;
+    font-size: 14px !important;
+    text-transform: uppercase;
+    margin: 40px 0px 0px 0px !important;
+  }
+
+  .end-fs .form-nav {
+    font-size: 10px !important;
+  }
+
+  input.previous.action-button-previous.form-nav {
+    float: left;
+  }
+
+  input.next.action-button.form-nav,
+  input.submit.action-button.form-nav {
+    float: right;
+  }
+
+  .mi-fs .next {
+    float: left !important;
+    background-color: #bfbfbf !important;
+  }
+
+  #bp-row .one-quarter-row {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .expenses-summary-div {
+    padding: 0px 0px;
+  }
+
+  .expenses-summary-div {
+    font-size: 12px;
+    margin-bottom: 40px;
+  }
+
+  .get-started .guides {
+    display: block;
+  }
+
+  /* .three-quarter-row {
+    display: none;
+  } */
+
+  .calculate-pensions .guides,
+  .title .container .get-started {
+    display: block;
+  }
+
+  .title .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button.get-started.btn {
+    margin-top: 40px;
+    background: #f7f8fc;
+    border: 3px solid #0089ff;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: #0089ff;
+    outline: none;
+  }
+
+  .guides {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(31, 89, 216, 0.2);
+  }
+
+  .guides .guide {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    font-family: "BentonSansBook";
+    padding: 40px;
+    color: #1a051d;
+  }
+
+  .fa-input {
+    color: #0033a1 !important;
+    padding-bottom: 10px !important;
+  }
+
+  .guide-icon {
+    border: 2px solid #0033a1;
+    padding: 5px;
+    border-radius: 20px !important;
+  }
+
+  .guide h3 {
+    margin-bottom: 10px;
+  }
+
+  .pencalc {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-family: "BentonSans";
+    color: #1a051d;
+    text-align: center;
+    display: block !important;
+  }
+
+  .parameters-input-table .page-one
+  /*, .parameters-input-table .page-two*/ {
+    display: flex;
+    flex-direction: column !important;
+  }
+
+  /* .parameters-input-table .page-two {
+    display: none;
+  } */
+
+  .gender-div {
+    order: 1;
+  }
+
+  .age-div {
+    order: 2;
+  }
+
+  .amt-slider {
+    /* order: 3; */
+    display: none;
+  }
+
+  .pencalc-center {
+    order: 5;
+  }
+
+  .cur-pen-value-slider {
+    /* order: 6; */
+    display: none;
+  }
+
+  .monthly-contr-slider {
+    /* order: 7; */
+    display: none;
+  }
+
+  .voluntarily-contr-slider.div-spacing {
+    display: none;
+  }
+
+  .other-investments-options {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .amt-slider .voluntarily-contr-slider,
+  .monthly-income-slider {
+    display: none !important;
+  }
+
+  .age-div {
+    height: 100%;
+  }
+
+  .pencalc-center {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid rgba(31, 89, 216, 0.2);
+    margin-top: 20px;
+  }
+
+  button.pencalc-next-btn.btn {
+    margin-top: 20px;
+    background: #f7f8fc;
+    border: 3px solid #25c769;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: #25c769;
+  }
+
+  button.pencalc-btn.btn {
+    margin-top: 20px;
+    background: #f7f8fc;
+    border: 3px solid #25c769;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: #25c769;
+  }
+
+  h3.form-num {
+    color: #0089ff;
+    font-family: "BentonSans";
+    margin-top: 30px;
+  }
+
+  .other-investments {
+    display: flex;
+  }
+
+  /* .pension-value, */
+  .desired-amt-mobile,
+  .current-amt-mobile,
+  .contrib-amt-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0px;
+    text-align: center;
+    border-bottom: 1px solid rgba(31, 89, 216, 0.2);
+  }
+
+  .pension-value {
+    display: none; /* remove it later */
+  }
+
+  .desired-amt-mobile h3,
+  .current-amt-mobile h3,
+  .contrib-amt-mobile h3 {
+    font-size: 18px !important;
+  }
+
+  .pension-value p,
+  .desired-amt-mobile p,
+  .current-amt-mobile p,
+  .contrib-amt-mobile p {
+    font-family: "BentonSansBook";
+  }
+
+  input#desired-amt-mobile,
+  input#current-amt-mobile,
+  input#contribution-amt-mobile {
+    height: 36px !important;
+    width: 100%;
+    font-size: 28px;
+    text-align: center;
+    background-color: #f7f8fc;
+    border-width: 0;
+  }
+
+  .page-two input:focus {
+    outline: 2px solid #0089ff;
+  }
+
+  h3.value {
+    font-size: 28px;
+  }
+
+  .calc-result img {
+    height: 200px;
+    width: 200px;
+  }
+
+  .calc-result {
+    display: none;
+  }
+
+  .show-calc-result {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calc-result p {
+    font-family: "BentonSansBook";
+  }
+
+  h3.h3-result {
+    color: #0089ff;
+    font-family: "BentonSans";
+    font-size: 18px;
+  }
+
+  .view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .fa-eye:before {
+    color: #1f59d8;
+    margin-right: 5px;
+  }
+
+  .view p {
+    color: #1f59d8;
+  }
+
+  .result {
+    font-family: "BentonSans";
+  }
+
+  button.pencalc-next-btn.next-page.btn.mb-10px {
+    color: #0089ff;
+    border-color: #0089ff;
+    margin-top: 40px;
+  }
+
+  .m-withdrawal {
+    display: none;
+  }
+
+  .get-results {
+    display: none;
+  }
+
+  .show-get-results {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 16px;
+    align-items: center;
+    font-family: "Open Sans";
+    background-color: #fff;
+  }
+
+  .get-results label {
+    color: #30424c;
+    font-size: 14px;
+  }
+
+  input.email.mb-10px {
+    height: 50px;
+    text-align: center;
+    border: 1px solid rgba(151, 151, 151, 0.228431);
+    box-sizing: border-box;
+    box-shadow: 0px 1px 2px rgba(17, 48, 75, 0.0647079);
+    border-radius: 3px;
+  }
+
+  .consent-controls {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .consent-controls {
+    margin: 20px 0;
+  }
+
+  .page-two {
+    display: none;
+  }
+
+  .show-parameters-input-table-page-two {
+    display: block !important;
+  }
+
+  .hide-parameters-input-table-page-one {
+    display: none !important;
+  }
+
+  .align-app-download-div img {
+    height: 40px;
+  }
+
+  .end-fs img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .end-fs h3 {
+    text-align: center;
+    font-size: 24px;
+    font-family: "BentonSansBook";
+  }
+
+  .end-fs-bold {
+    font-family: "BentonSans" !important;
+    font-size: 24px;
+  }
+
+  .end-fs p {
+    font-size: 15px !important;
+  }
+
+  .get-results-modal {
+    display: flex !important;
+    flex-direction: column;
+    padding: 40px 16px;
+    align-items: center;
+    font-family: "Open Sans";
+    background-color: #fff;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  #modalOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+  }
+  #modal {
+    position: relative;
+    margin: 100px auto;
+    background: #fff;
+    width: 300px;
+    padding: 30px;
+    box-shadow: 0 5px 50px -4px #aaa;
+  }
+  #modal span.modalClose {
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
+
+  /* .parameters-input-table .page-two {
+    display: none;
+  } */
+}
+
+@media (min-width: 501px) and (max-width: 767px) {
+}
+
+@media (min-width: 769px) {
+  .enquiries.container {
+    padding: 80px 160px 80px 0;
+    float: right;
+    width: 70% !important;
+  }
+  .form-nav {
+    width: 48% !important;
+    height: 46px;
+    border-radius: 0px !important;
+    font-size: 14px !important;
+    margin: 100px 0px 0px 0px !important;
+  }
+
+  input.previous.action-button-previous.form-nav {
+    float: left;
+  }
+
+  input.next.action-button.form-nav,
+  input.submit.action-button.form-nav {
+    float: right;
+  }
+
+  .mi-fs .next {
+    float: left !important;
+    background-color: #bfbfbf !important;
+  }
+}
+
+.guides,
+.get-started,
+.pencalc {
+  display: none;
+}
+
+.lineContainer {
+  position: relative;
+}
+.line {
+  border-top: 10px solid #e5e5e5;
+  width: 21px;
+  height: 8px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.v-bar {
+  height: 15px;
+  width: 5px;
+  background-color: blue;
+  transform: translateY(-25px);
+}
+
+.line-middle {
+  border-top: 10px solid #e5e5e5;
+  /* border-right: 1px solid #1f59d8; */
+  width: 21px;
+  height: 8px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.lineRightEnd {
+  border-right: 0;
+}
+.numberContainer {
+  position: absolute;
+  top: 10px;
+  margin: 0;
+  padding: 0;
+}
+.number {
+  width: 22px;
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.numberLeftEnd {
+  width: 10px;
+  height: 5px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.red {
+  border-top: 10px solid red !important;
+  width: 21px;
+  height: 8px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.green {
+  border-top: 10px solid green !important;
+
+  width: 21px;
+  height: 8px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.pv-flex {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
