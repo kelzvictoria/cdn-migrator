@@ -207,12 +207,21 @@ router.post("/upload-file", async (req) => {
           let pfabo_cdn_url = s3OrphanUrls[i]["PFABO CDN URL"];
           let stringArr = pfabo_cdn_url.split(".com");
 
-          s3OrphanUrls[i]["Stanbic CDN URL"] =
-            "https://formelo.stanbicibtcpension.com" + stringArr[1];
-
           let documentID = s3OrphanUrls[i]["Formelo Entity ID"];
           let attributeKey = s3OrphanUrls[i]["Formelo Attribute Key"];
+
+          s3OrphanUrls[i]["Stanbic CDN URL"] =
+            stringArr[0] === "https://cdn-staging.stanbicibtcpension" ||
+            "https://formelo.stanbicibtcpension"
+              ? s3OrphanUrls[i]["PFABO CDN URL"]
+              : "https://formelo.stanbicibtcpension.com" + stringArr[1];
+
+          s3OrphanUrls[i]["Formelo Entity URL"] =
+            "https://formelo.stanbicibtcpension.com/data/collections/documents/edit/" +
+            documentID;
+
           let stanUrl = s3OrphanUrls[i]["Stanbic CDN URL"];
+          //  console.log("stanUrl", stanUrl);
 
           try {
             /* await utils.patchDocument(
