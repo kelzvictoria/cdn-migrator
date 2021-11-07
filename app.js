@@ -7,14 +7,13 @@ const formidable = require("formidable");
 
 const fs = require("fs");
 const csvtojson = require("csvtojson");
-const request = require("request");
 
 var session = require("express-session");
-var https = require("https");
 
 const path = require("path");
 
 const utils = require("./app-utils");
+const { default: axios } = require("axios");
 
 var options = {
   key: fs.readFileSync("./certs/server-key.pem"),
@@ -228,8 +227,8 @@ router.post("/upload-file", async (req) => {
 
       let is_patch_complete = false;
       let patchTypes = ["pfabo-formelo", "formelo-pfabo"];
-      let patchType = patchTypes[0];
-      const patchDocuments = (s3OrphanUrls, accessToken, patchType) => {
+      let patchType = patchTypes[1];
+      const patchDocuments = async (s3OrphanUrls, accessToken, patchType) => {
         //  var documentID, attributeKey, stanUrl, pfabo_cdn_url;
         console.log("s3OrphanUrls.length", s3OrphanUrls.length);
         for (let i = 0; i < s3OrphanUrls.length; i++) {
@@ -261,57 +260,33 @@ router.post("/upload-file", async (req) => {
           //  console.log("stanUrl", stanUrl);
 
           try {
-            /* await utils.patchDocument(
-              documentID,
-              attributeKey,
-              stanUrl,
-              stanbic_access_token
-            ); */
-
-            var options = {
-              method: "POST",
-              url: `https://formelo.stanbicibtcpension.com/api/documents/process`,
-              qs: {
-                id: documentID, //entity id,
-                action: "patch",
-                data: JSON.stringify({
+            console.log("Patching document " + documentID);
+            await axios
+              .patch(
+                `https://formelo.stanbicibtcpension.com/api/documents/${documentID}.json`,
+                {
+                  id: documentID,
                   data: {
                     [attributeKey]:
                       patchType === "formelo-pfabo" ? stanUrl : formeloUrl,
                   },
-                }),
-              },
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/x-www-form-urlencoded",
-              },
-              form: false,
-            };
-            // console.log("options", options);
-            request(options, function (error, response, body) {
-              console.log("Patching document " + documentID);
-              if (error) {
-                throw new Error(error);
-              } else if (
-                response.statusCode >= 500 &&
-                response.statusCode < 600
-              ) {
-                let errorMsg = `Failed to patch ${documentID} `;
-                console.log(errorMsg);
-                buildErrObj(fileN, documentID, errorMsg);
-                return;
-              } else if (response.statusCode === 401) {
-                buildErrObj(fileN, documentID, "Please login to continue...");
-                return;
-              } else {
-                // console.log("response", response);
+                },
+                {
+                  headers: {
+                    Authorization: "Bearer " + accessToken,
+                    "Content-Type": "application/x-www-form-urlencoded",
+                  },
+                }
+              )
+              .then((res) => {
+                //console.log("res", res);
                 console.log(`Patch to ${documentID} completed succcessfully`);
                 patched_documents.push(documentID);
                 console.log(
                   "patched_documents.length",
                   patched_documents.length
                 );
-
+                console.log("patchDocuments in progress...");
                 if (patched_documents.length === s3OrphanUrls.length) {
                   is_patch_complete = true;
 
@@ -331,13 +306,12 @@ router.post("/upload-file", async (req) => {
                         }
                       }
                     );
-                  } else {
-                    console.log("patchDocuments in progress...");
                   }
                 }
-              }
-            });
+              });
           } catch (err) {
+            let errorMsg = `Failed to patch ${documentID} `;
+            buildErrObj(fileN, documentID, errorMsg);
             console.log(`patch to ${documentID} failed`, "error:", err);
           }
         }
