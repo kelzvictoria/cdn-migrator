@@ -1,0 +1,4 @@
+Express server listening on port 8080
+req.get('host') localhost:8080
+baseUrl http://localhost:8080/cdn-migrator-test/
+next_uri http://localhost:8080/cdn-migrator-test/cdn-migrator-test/index

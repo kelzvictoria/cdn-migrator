@@ -79,7 +79,7 @@ function checkForCSV() {
     // || errors[file_name]
   ) {
     console.log("error exists");
-    ShowErrors(file_name);
+    ShowErrors();
   }
 }
 
@@ -273,7 +273,7 @@ function readTextFile(file) {
   return allText;
 }
 
-function ShowErrors(file_name) {
+function ShowErrors() {
   console.log("file_name");
   $("#message-text2").hide();
 
@@ -281,17 +281,19 @@ function ShowErrors(file_name) {
     $("#message-text3").text("A network error has occured...");
   }
   if (errors) {
-    let error = errors[file_name.split(".")[0]];
+    // let error = errors[file_name.split(".")[0]];
     {
-      if (error) {
-        console.log("error", error);
+      //  if (error) {
+      /*  console.log("error", error);
         let errorMsg = "";
 
         for (let i = 0; i < error.length; i++) {
           errorMsg += `PIN: ${error[i].pin}, ${error[i].error}. `;
-        }
-        $("#message-text3").text(errorMsg.substring(0, 85) + "...");
-      }
+        } */
+      $("#message-text3").text(
+        "Something went wrong, please try again later..."
+      );
+      //}
     }
   }
 
@@ -353,5 +355,20 @@ function HideMessage() {
       // }
     }
   }, 3000);
+  return true;
+})();
+
+(function () {
+  //"use strict";
+  let window_location = window.location;
+  var timerHandle = setInterval(function () {
+    let local_token = localStorage.getItem("access_token");
+    if (!local_token) {
+      window.location.href =
+        window.location.href = `${window_location.origin}/cdn-migrator-test/`;
+    } else {
+      clearInterval(timerHandle);
+    }
+  }, 500);
   return true;
 })();

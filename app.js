@@ -10,7 +10,16 @@ const csvtojson = require("csvtojson");
 const request = require("request");
 
 var session = require("express-session");
+var https = require("https");
+
+const path = require("path");
+
 const utils = require("./app-utils");
+
+var options = {
+  key: fs.readFileSync("./certs/server-key.pem"),
+  cert: fs.readFileSync("./certs/server-cert.pem"),
+};
 
 var port = process.env["APP_PORT"] || 8080;
 var appPath =
@@ -39,6 +48,9 @@ const filesStaticDataPath = __dirname + "/uploads";
 const generatedFileStaticPath = __dirname + "/generated-csv";
 
 const viewDataPath = __dirname + "/views/_partials";
+
+let err_path = path.join(staticDataPath, `errors.json`);
+const err_file = require(err_path);
 
 const app = express();
 const router = express.Router();
@@ -164,7 +176,7 @@ app.get(appPath + "/cdn-migrator", async (req, res) => {
 router.post("/upload-file", async (req) => {
   let uploaded_csv_path = filesStaticDataPath;
 
-  let fileUploadErrorArr;
+  let fileUploadErrorArr, fileN;
 
   let stanbic_access_token;
 
@@ -177,6 +189,14 @@ router.post("/upload-file", async (req) => {
   //console.log("form", form);
   fileUploadErrorArr = [];
 
+  const buildErrObj = (folder_name, entity_id, error) => {
+    fileUploadErrorArr.push({
+      folder_name,
+      entity_id,
+      error,
+    });
+  };
+
   form.multiples = false;
   form.uploadDir = uploaded_csv_path;
   //console.log("form", form);
@@ -187,15 +207,31 @@ router.post("/upload-file", async (req) => {
 
       //console.log("stanbic_access_token", stanbic_access_token);
       let csvFilePath = files.file.path;
-      //console.log("filePath", csvFilePath);
 
-      //put your logic here
+      let fileName = files.file.name.split(".")[0];
+      fileN = fileName;
+      let errorFileName = fileName;
 
-      //i.e do stage 1 and stage 2 here
+      if (err_file[errorFileName]) {
+        delete err_file[errorFileName];
+        //+ timeStamp
+        fs.writeFile(
+          err_path,
+          //errors,
+          // `let ${errorFileName} =  ${JSON.stringify(fileUploadErrorArr)}`,
+          JSON.stringify(err_file),
+          (err) => {
+            err && console.log("err", err);
+          }
+        );
+      }
+
       let is_patch_complete = false;
-      const patchDocuments = (s3OrphanUrls, accessToken) => {
+      let patchTypes = ["pfabo-formelo", "formelo-pfabo"];
+      let patchType = patchTypes[0];
+      const patchDocuments = (s3OrphanUrls, accessToken, patchType) => {
         //  var documentID, attributeKey, stanUrl, pfabo_cdn_url;
-
+        console.log("s3OrphanUrls.length", s3OrphanUrls.length);
         for (let i = 0; i < s3OrphanUrls.length; i++) {
           delete s3OrphanUrls[i]["Formelo DB ID"];
           delete s3OrphanUrls[i]["Size"];
@@ -221,6 +257,7 @@ router.post("/upload-file", async (req) => {
             documentID;
 
           let stanUrl = s3OrphanUrls[i]["Stanbic CDN URL"];
+          let formeloUrl = s3OrphanUrls[i]["Formelo CDN URL"];
           //  console.log("stanUrl", stanUrl);
 
           try {
@@ -239,7 +276,8 @@ router.post("/upload-file", async (req) => {
                 action: "patch",
                 data: JSON.stringify({
                   data: {
-                    [attributeKey]: stanUrl,
+                    [attributeKey]:
+                      patchType === "formelo-pfabo" ? stanUrl : formeloUrl,
                   },
                 }),
               },
@@ -260,7 +298,13 @@ router.post("/upload-file", async (req) => {
               ) {
                 let errorMsg = `Failed to patch ${documentID} `;
                 console.log(errorMsg);
+                buildErrObj(fileN, documentID, errorMsg);
+                return;
+              } else if (response.statusCode === 401) {
+                buildErrObj(fileN, documentID, "Please login to continue...");
+                return;
               } else {
+                // console.log("response", response);
                 console.log(`Patch to ${documentID} completed succcessfully`);
                 patched_documents.push(documentID);
                 console.log(
@@ -302,7 +346,7 @@ router.post("/upload-file", async (req) => {
       csvtojson()
         .fromFile(csvFilePath)
         .then(async (json) => {
-          await patchDocuments(json, stanbic_access_token);
+          await patchDocuments(json, stanbic_access_token, patchType);
           // console.log("s3OrphanUrls", s3OrphanUrls);
         });
     });
@@ -314,3 +358,7 @@ router.post("/upload-file", async (req) => {
 app.listen(port, function () {
   console.log("tools listening at port: " + port);
 });
+
+/*var server = https.createServer(options, app).listen(port, function () {
+  console.log("Express server listening on port " + port);
+});*/
