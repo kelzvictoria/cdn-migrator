@@ -201,7 +201,9 @@ section .row i {
 #message-text2,
 #message-text3 {
   color: #fff;
-  padding: 5px 15px;
+  padding: 5px 5px;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-bottom: 0.5rem;
   border-color: transparent !important;
 }

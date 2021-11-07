@@ -3,7 +3,7 @@ const directory = "../uploaded-folder";
 //const APP_PORT = 8080;
 //const APP_PATH = "localhost:" + APP_PORT;
 
-let stanbic_token;
+let stanbic_token, uploaded_file_name;
 
 const form = document.querySelector("form"),
   fileInput = document.querySelector(".file-input"),
@@ -31,14 +31,15 @@ let window_location;
 let errors_file_path;
 
 function checkForCSV() {
+  let file_name = uploaded_file_name;
   window_location = window.location.href;
   let appPath = window.location.href
     .split(window.location.host)[1]
     .split("/")[1];
 
-  /* readErrorsFile(errors_file_path, function (text) {
+  readErrorsFile(errors_file_path, function (text) {
     errors = JSON.parse(text);
-  }); */
+  });
 
   let csvFileExists = FileExists(`../${appPath}/s3_orphan_urls.json`);
 
@@ -46,6 +47,7 @@ function checkForCSV() {
   let errorsExists = false;
 
   if (errors) {
+    // errorsExists = true;
     errorsExists = errors[file_name.split(".")[0]] ? true : false;
   }
 
@@ -83,6 +85,23 @@ function checkForCSV() {
   }
 }
 
+function readErrorsFile(file, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.overrideMimeType("application/json");
+  xhr.open("GET", file, true);
+  xhr.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
+
+  // fallbacks for IE and older browsers:
+  xhr.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
+  xhr.setRequestHeader("Pragma", "no-cache");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status == "200") {
+      callback(xhr.responseText);
+    }
+  };
+  xhr.send(null);
+}
+
 function readJSONFile(file, callback) {
   var xhr = new XMLHttpRequest();
   xhr.overrideMimeType("application/json");
@@ -113,6 +132,9 @@ function FileExists(urlToFile) {
     //  console.log("xhr.status", xhr.status);
     if (xhr.status == "404") {
       console.log("File doesn't exist");
+      return false;
+    } else if (xhr.status == "502") {
+      is_network_error = true;
       return false;
     } else {
       console.log("xhr responseText", xhr.responseText);
@@ -174,9 +196,10 @@ function uploadFile(name, file) {
     .split(window.location.host)[1]
     .split("/")[1];
   let upload_file_path = `//${window.location.host}/${appPath}/upload-file`;
-
+  errors_file_path = `../${appPath}/errors.json`;
   console.log("file.name", file.name);
   let file_name = file.name;
+  uploaded_file_name = file_name;
   var formData = new FormData();
   formData.append("file", file);
 
@@ -188,7 +211,10 @@ function uploadFile(name, file) {
   xhr.onprogress = function () {
     console.log("xhr.status LOADING: ", xhr.status);
 
-    if (xhr.status >= 400 && xhr.status < 600) {
+    if (
+      //xhr.status >= 400 && xhr.status < 600 && xhr.status !== 504
+      xhr.status === 502
+    ) {
       is_network_error = true;
     }
   };
@@ -274,26 +300,27 @@ function readTextFile(file) {
 }
 
 function ShowErrors() {
-  console.log("file_name");
+  let file_name = uploaded_file_name;
+  console.log("file_name", file_name);
   $("#message-text2").hide();
 
   if (is_network_error) {
     $("#message-text3").text("A network error has occured...");
   }
   if (errors) {
-    // let error = errors[file_name.split(".")[0]];
-    {
-      //  if (error) {
-      /*  console.log("error", error);
-        let errorMsg = "";
+    let error = errors[file_name.split(".")[0]];
 
-        for (let i = 0; i < error.length; i++) {
-          errorMsg += `PIN: ${error[i].pin}, ${error[i].error}. `;
-        } */
+    if (error) {
+      console.log("error", error);
+      let errorMsg = "";
+
+      for (let i = 0; i < error.length; i++) {
+        errorMsg += `PIN: ${error[i].entity_id}, ${error[i].error}. `;
+      }
       $("#message-text3").text(
-        "Something went wrong, please try again later..."
+        errorMsg
+        //"Something went wrong, please try again later..."
       );
-      //}
     }
   }
 

@@ -3,8 +3,9 @@ const { s3Client } = require("./sampleClient.js"); // Helper function that creat
 
 const orphans = require("./generated-csv/s3_orphan_urls.json");
 
-const orphan_urls = orphans.map((o) => o["Formelo CDN URL"]);
-// .filter((o) => o.includes("cdn.formelo.com"));
+const orphan_urls = orphans
+  .map((o) => o["Formelo CDN URL"])
+  .filter((o) => o.includes("cdn.formelo.com"));
 
 console.log("orphan_urls", orphan_urls);
 
@@ -14,7 +15,9 @@ let bucket_name = "formelo-cdn-sample";
 const getS3Keys = () => {
   for (let i = 0; i < orphan_urls.length; i++) {
     // if (orphan_urls[i].includes("cdn.formelo.com")) {
-    s3Keys.push(orphan_urls[i].split("cdn.formelo.com")[1].substring(1));
+    let orphan_url = orphan_urls[i].split("cdn.formelo.com")[1].substring(1);
+    console.log("orphan_url", orphan_url);
+    s3Keys.push(orphan_url);
     // }
   }
 };

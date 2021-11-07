@@ -181,12 +181,30 @@ router.post("/upload-file", async (req) => {
 
   let s3OrphanUrls;
 
-  let patched_documents = [];
-
   //https://www.section.io/engineering-education/uploading-files-using-formidable-nodejs/
   var form = new formidable.IncomingForm();
   //console.log("form", form);
   fileUploadErrorArr = [];
+
+  fs.exists(
+    path.join(
+      generatedFileStaticPath,
+
+      "s3_orphan_urls.json"
+    ),
+    function (exists) {
+      // console.log("exists", exists);
+      if (exists) {
+        fs.unlinkSync(
+          path.join(
+            generatedFileStaticPath,
+
+            "s3_orphan_urls.json"
+          )
+        );
+      }
+    }
+  );
 
   const buildErrObj = (folder_name, entity_id, error) => {
     fileUploadErrorArr.push({
@@ -225,9 +243,18 @@ router.post("/upload-file", async (req) => {
         );
       }
 
+      let pfabo_files_json;
+      let patched_documents = [];
+      let failed_patches = [];
       let is_patch_complete = false;
       let patchTypes = ["pfabo-formelo", "formelo-pfabo"];
-      let patchType = patchTypes[1];
+      let patchType = patchTypes[0];
+      console.log("patchType: ", patchType);
+      let error_occured = false;
+      let no_of_times_reattempted = 0;
+      let total_no_of_cdn_urls;
+      let total_s3_orphan_urls = [];
+
       const patchDocuments = async (s3OrphanUrls, accessToken, patchType) => {
         //  var documentID, attributeKey, stanUrl, pfabo_cdn_url;
         console.log("s3OrphanUrls.length", s3OrphanUrls.length);
@@ -260,7 +287,10 @@ router.post("/upload-file", async (req) => {
           //  console.log("stanUrl", stanUrl);
 
           try {
-            console.log("Patching document " + documentID);
+            console.log(
+              "Patching document " + documentID,
+              "attribute: " + attributeKey
+            );
             await axios
               .patch(
                 `https://formelo.stanbicibtcpension.com/api/documents/${documentID}.json`,
@@ -281,20 +311,50 @@ router.post("/upload-file", async (req) => {
               .then((res) => {
                 //console.log("res", res);
                 console.log(`Patch to ${documentID} completed succcessfully`);
+
+                let record_exists_in_failed_arr = failed_patches.filter(
+                  (f) =>
+                    f["Formelo Entity ID"] === documentID &&
+                    f["Formelo Attribute Key"] === attributeKey
+                ).length
+                  ? true
+                  : false;
+
+                if (record_exists_in_failed_arr) {
+                  failed_patches = failed_patches.filter(
+                    (f) =>
+                      f["Formelo Entity ID"] !== documentID &&
+                      f["Formelo Attribute Key"] !== attributeKey
+                  );
+                }
                 patched_documents.push(documentID);
+                total_s3_orphan_urls.push(s3OrphanUrls[i]);
                 console.log(
                   "patched_documents.length",
                   patched_documents.length
                 );
+
                 console.log("patchDocuments in progress...");
-                if (patched_documents.length === s3OrphanUrls.length) {
+
+                /* if (failed_patches.length) {
+                  console.log("reattempting failed patches...");
+                  patchDocuments(
+                    failed_patches,
+                    stanbic_access_token,
+                    patchType
+                  );
+                } */
+                if (
+                  patched_documents.length === total_no_of_cdn_urls && //s3OrphanUrls.length
+                  !failed_patches.length
+                ) {
                   is_patch_complete = true;
 
                   console.log("is_patch_complete", is_patch_complete);
                   if (is_patch_complete) {
                     fs.writeFile(
                       "./generated-csv/s3_orphan_urls.json",
-                      JSON.stringify(s3OrphanUrls),
+                      JSON.stringify(total_s3_orphan_urls),
                       "utf-8",
                       (err) => {
                         if (err) {
@@ -307,12 +367,57 @@ router.post("/upload-file", async (req) => {
                       }
                     );
                   }
+                } else {
+                  //console.log("fileUploadErrorArr", fileUploadErrorArr);
+                  let timeStamp = new Date().getTime();
+                  if (fileUploadErrorArr.length) {
+                    err_file[errorFileName] = fileUploadErrorArr;
+                    //+ timeStamp
+                    fs.writeFile(
+                      err_path,
+                      //errors,
+                      // `let ${errorFileName} =  ${JSON.stringify(fileUploadErrorArr)}`,
+                      JSON.stringify(err_file),
+                      (err) => {
+                        err && console.log("err", err);
+                      }
+                    );
+                    /*res.send({
+                    status: 500,
+                    msg: fileUploadErrorArr,
+                  }); */
+                  }
                 }
               });
           } catch (err) {
             let errorMsg = `Failed to patch ${documentID} `;
-            buildErrObj(fileN, documentID, errorMsg);
-            console.log(`patch to ${documentID} failed`, "error:", err);
+            let record_exists_in_failed_arr = failed_patches.filter(
+              (f) =>
+                f["Formelo Entity ID"] === documentID &&
+                f["Formelo Attribute Key"] === attributeKey
+            ).length
+              ? true
+              : false;
+
+            console.log(
+              "record_exists_in_failed_arr",
+              record_exists_in_failed_arr
+            );
+
+            if (!record_exists_in_failed_arr) {
+              failed_patches.push(
+                pfabo_files_json.filter(
+                  (p) =>
+                    p["Formelo Entity ID"] === documentID &&
+                    p["Formelo Attribute Key"] === attributeKey
+                )[0]
+              );
+            }
+            error_occured = true;
+            if (err.code !== "ETIMEDOUT") {
+              buildErrObj(fileN, documentID, errorMsg);
+              console.log(`patch to ${documentID} failed`, "error:", err);
+            }
           }
         }
       };
@@ -320,7 +425,22 @@ router.post("/upload-file", async (req) => {
       csvtojson()
         .fromFile(csvFilePath)
         .then(async (json) => {
+          pfabo_files_json = json;
+          total_no_of_cdn_urls = json.length;
           await patchDocuments(json, stanbic_access_token, patchType);
+          console.log("error_occured", error_occured);
+
+          if (error_occured && no_of_times_reattempted < 2) {
+            console.log("an error has occured, reattempting failed patches...");
+            no_of_times_reattempted = no_of_times_reattempted + 1;
+            console.log("no_of_times_reattempted", no_of_times_reattempted);
+            console.log("failed_patches", failed_patches);
+            await patchDocuments(
+              failed_patches,
+              stanbic_access_token,
+              patchType
+            );
+          }
           // console.log("s3OrphanUrls", s3OrphanUrls);
         });
     });
