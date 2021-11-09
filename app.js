@@ -249,7 +249,7 @@ router.post("/upload-file", async (req, res) => {
       let failed_patches = [];
       let is_patch_complete = false;
       let patchTypes = ["pfabo-formelo", "formelo-pfabo"];
-      let patchType = patchTypes[0];
+      let patchType = patchTypes[1];
       console.log("patchType: ", patchType);
       let error_occured = false;
       let no_of_times_reattempted = 0;
