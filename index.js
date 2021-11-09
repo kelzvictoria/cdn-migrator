@@ -17,7 +17,7 @@ try {
     for (let i = 0; i < orphan_urls.length; i++) {
       // if (orphan_urls[i].includes("cdn.formelo.com")) {
       let orphan_url = orphan_urls[i].split("cdn.formelo.com")[1].substring(1);
-      console.log("orphan_url", orphan_url);
+      //console.log("orphan_url", orphan_url);
       s3Keys.push(orphan_url);
       // }
     }
@@ -38,7 +38,7 @@ try {
     }
   };
 
-  const deletedS3OrphanUrls = () => {
+  const deleteS3OrphanUrls = () => {
     getS3Keys();
     //console.log("s3Keys", s3Keys);
 
@@ -48,10 +48,10 @@ try {
     }
   };
 
-  //deletedS3OrphanUrls();
+  //deleteS3OrphanUrls();
 
   module.exports = {
-    deletedS3OrphanUrls,
+    deleteS3OrphanUrls: deleteS3OrphanUrls,
   };
 } catch (e) {
   if (e instanceof Error && e.code === "MODULE_NOT_FOUND")

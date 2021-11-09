@@ -14,8 +14,6 @@ const path = require("path");
 
 const utils = require("./app-utils");
 
-const { deletedS3OrphanUrls } = require("./index");
-
 const { default: axios } = require("axios");
 
 var options = {
@@ -251,7 +249,7 @@ router.post("/upload-file", async (req, res) => {
       let failed_patches = [];
       let is_patch_complete = false;
       let patchTypes = ["pfabo-formelo", "formelo-pfabo"];
-      let patchType = patchTypes[1];
+      let patchType = patchTypes[0];
       console.log("patchType: ", patchType);
       let error_occured = false;
       let no_of_times_reattempted = 0;
@@ -453,14 +451,15 @@ router.post("/upload-file", async (req, res) => {
 });
 
 router.post("/delete-s3-files", async (req, res) => {
+  const { deleteS3OrphanUrls } = require("./index");
   try {
-    deletedS3OrphanUrls();
+    deleteS3OrphanUrls();
     console.log("s3 orphans have been deleted successfully");
     res.send({
       status: true,
     });
   } catch (err) {
-    console.log("an error occured");
+    console.log("an error occured", err);
     res.send({
       status: false,
       err,

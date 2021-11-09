@@ -324,7 +324,7 @@ function deleteS3Orphans() {
         console.log("s3 orphans have been deleted successfully");
         alert("S3 orphans have been deleted successfully");
       } else if (res.status === false) {
-        console.log("s3 orphans failed to delete successfully", err);
+        console.log("s3 orphans failed to delete successfully", res.err);
       }
     }
   };
