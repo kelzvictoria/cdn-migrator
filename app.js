@@ -13,6 +13,9 @@ var session = require("express-session");
 const path = require("path");
 
 const utils = require("./app-utils");
+
+const { deletedS3OrphanUrls } = require("./index");
+
 const { default: axios } = require("axios");
 
 var options = {
@@ -172,7 +175,7 @@ app.get(appPath + "/cdn-migrator", async (req, res) => {
   });
 });
 
-router.post("/upload-file", async (req) => {
+router.post("/upload-file", async (req, res) => {
   let uploaded_csv_path = filesStaticDataPath;
 
   let fileUploadErrorArr, fileN;
@@ -248,7 +251,7 @@ router.post("/upload-file", async (req) => {
       let failed_patches = [];
       let is_patch_complete = false;
       let patchTypes = ["pfabo-formelo", "formelo-pfabo"];
-      let patchType = patchTypes[0];
+      let patchType = patchTypes[1];
       console.log("patchType: ", patchType);
       let error_occured = false;
       let no_of_times_reattempted = 0;
@@ -382,10 +385,10 @@ router.post("/upload-file", async (req) => {
                         err && console.log("err", err);
                       }
                     );
-                    /*res.send({
-                    status: 500,
-                    msg: fileUploadErrorArr,
-                  }); */
+                    res.send({
+                      status: 500,
+                      msg: fileUploadErrorArr,
+                    });
                   }
                 }
               });
@@ -446,6 +449,22 @@ router.post("/upload-file", async (req) => {
     });
   } catch (err) {
     console.log("/upload-post error", err);
+  }
+});
+
+router.post("/delete-s3-files", async (req, res) => {
+  try {
+    deletedS3OrphanUrls();
+    console.log("s3 orphans have been deleted successfully");
+    res.send({
+      status: true,
+    });
+  } catch (err) {
+    console.log("an error occured");
+    res.send({
+      status: false,
+      err,
+    });
   }
 });
 

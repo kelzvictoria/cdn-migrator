@@ -18,6 +18,7 @@ const form = document.querySelector("form"),
   (refreshDiv = document.querySelector(".refresh-page")),
   (btnLogin = document.querySelector("#login")),
   (btnLogout = document.querySelector("#logout"));
+deleteBtn = document.querySelector("#delete-link");
 
 let is_file_uploaded = false;
 let is_network_error = false;
@@ -131,7 +132,7 @@ function FileExists(urlToFile) {
     xhr.send();
     //  console.log("xhr.status", xhr.status);
     if (xhr.status == "404") {
-      console.log("File doesn't exist");
+      //console.log("File doesn't exist");
       return false;
     } else if (xhr.status == "502") {
       is_network_error = true;
@@ -165,7 +166,7 @@ const toggleDisplayUploadBtn = (file_name) => {
 
 p.addEventListener("click", () => {
   fileInput.click();
-  console.log("clicked");
+  //  console.log("clicked");
 });
 
 refreshBtn.addEventListener("click", (e) => {
@@ -179,7 +180,7 @@ fileInput.onchange = ({ target }) => {
   if (file) {
     let fileName = file.name;
 
-    console.log("fileName", fileName);
+    // console.log("fileName", fileName);
 
     if (fileName.length >= 12) {
       let splitName = fileName.split(".");
@@ -197,7 +198,7 @@ function uploadFile(name, file) {
     .split("/")[1];
   let upload_file_path = `//${window.location.host}/${appPath}/upload-file`;
   errors_file_path = `../${appPath}/errors.json`;
-  console.log("file.name", file.name);
+  //console.log("file.name", file.name);
   let file_name = file.name;
   uploaded_file_name = file_name;
   var formData = new FormData();
@@ -206,7 +207,7 @@ function uploadFile(name, file) {
   var xhr = new XMLHttpRequest();
 
   xhr.open("POST", upload_file_path, true);
-  console.log("xhr.status OPENED: ", xhr.status);
+  //console.log("xhr.status OPENED: ", xhr.status);
 
   xhr.onprogress = function () {
     console.log("xhr.status LOADING: ", xhr.status);
@@ -264,13 +265,13 @@ function uploadFile(name, file) {
         location.reload();
       });
       toggleIsFileUploaded();
-      console.log("is_file_uploaded", is_file_uploaded);
+      //console.log("is_file_uploaded", is_file_uploaded);
       toggleDisplayUploadBtn(file_name);
     }
   });
 
   let token = localStorage.getItem("access_token");
-  console.log("token", token);
+  //console.log("token", token);
   formData.append("access_token", token);
 
   xhr.onload = function () {
@@ -279,6 +280,54 @@ function uploadFile(name, file) {
   xhr.send(formData);
 
   //alert(resp);
+}
+
+deleteBtn.addEventListener("click", () => {
+  deleteS3Orphans();
+});
+
+function deleteS3Orphans() {
+  var xhr = new XMLHttpRequest();
+  let appPath = window.location.href
+    .split(window.location.host)[1]
+    .split("/")[1];
+  var delete_file_route = `//${window.location.host}/${appPath}/delete-s3-files`;
+  xhr.open("POST", delete_file_route, true);
+
+  xhr.onprogress = function () {
+    console.log("delete xhr.status LOADING: ", xhr.status);
+
+    if (
+      //xhr.status >= 400 && xhr.status < 600 && xhr.status !== 504
+      xhr.status === 502
+    ) {
+      is_network_error = true;
+    }
+  };
+
+  try {
+    xhr.onload = function () {
+      console.log("delete xhr.status DONE: ", xhr.status);
+    };
+    xhr.send(null);
+  } catch (err) {
+    // alert("s3 orphans failed to delete successfully");
+    console.log("s3 orphans failed to delete successfully", err);
+  }
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      //  alert(xhr.responseText);
+      let res = JSON.parse(xhr.responseText);
+      console.log("res.status", res.status);
+      if (res.status === true) {
+        console.log("s3 orphans have been deleted successfully");
+        alert("S3 orphans have been deleted successfully");
+      } else if (res.status === false) {
+        console.log("s3 orphans failed to delete successfully", err);
+      }
+    }
+  };
 }
 
 let interval = null;
@@ -352,11 +401,12 @@ function HideMessage() {
 
   $("#message").hide();
   $("#download-link").show();
+  $("#delete-link").show();
   $(".refresh-page").show();
 }
 
 (function () {
-  console.log("in here");
+  //console.log("in here");
   //"use strict";
   let local_token = localStorage.getItem("access_token");
   if (local_token) {

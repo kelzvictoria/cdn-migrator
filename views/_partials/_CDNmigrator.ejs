@@ -70,8 +70,11 @@
         id="uploaded-zip"
         hidden
       />
-      <i class="fas fa-cloud-upload-alt"></i>
-      <p id="browse">Browse File to Upload</p>
+      <div id="browse">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <p>Browse File to Upload</p>
+      </div>
+
       <section class="progress-area"></section>
       <section class="uploaded-area"></section>
       <div class="btn-download-div">
@@ -82,9 +85,13 @@
         >
           Download CSV
         </a>
-        <!-- <button id="download-csv" class="btn btn-primary btn-download" style="display: none;" disabled="true">
-                 Download CSV File
-             </button>` -->
+        <a
+          class="btn btn-primary btn-delete delete"
+          style="display: none"
+          id="delete-link"
+        >
+          Delete S3 Orphans
+        </a>
       </div>
 
       <div class="refresh-page" style="display: none">

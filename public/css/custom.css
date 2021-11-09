@@ -138,7 +138,8 @@ section .details span {
 }
 
 .btn-download {
-  background-color: #0089ff;
+  background-color: #2ecc71;
+  /* #0089ff; */
 }
 
 #btn-auth {
@@ -151,6 +152,7 @@ section .details span {
 .btn-download-div {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 form {
@@ -244,4 +246,14 @@ section .row i {
 #logout
 /* ,#login  */ {
   display: none;
+}
+
+#browse {
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: #0089ff;
+  margin-top: 0.5rem;
 }
