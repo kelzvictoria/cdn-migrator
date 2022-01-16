@@ -43,7 +43,8 @@
 
 This is a web application that accepts a JSON file, replaces NoSQL Documents CDN URLS based on the content of the JSON and then goes to AWS S3 buckets to delete replaced files.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<!--
+<p align="right">(<a href="#top">back to top</a>)</p> -->
 
 ### Built With
 
@@ -51,7 +52,7 @@ This is a web application that accepts a JSON file, replaces NoSQL Documents CDN
 - [Express.js](https://expressjs.com/)
 - [S3](https://aws.amazon.com/s3)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
 
 <!-- GETTING STARTED -->
 
@@ -82,7 +83,7 @@ This is a web application that accepts a JSON file, replaces NoSQL Documents CDN
    ```
 4. Fill in the missing env values with the appropriate credentials. Ask your team-lead for help in getting these values from the server.
 
-It is important to obtain these values before running the app if not certain requests cannot be granted through the app.
+   It is important to obtain these values before running the app if not certain requests cannot be granted through the app.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -107,7 +108,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - [@vickycinky](https://twitter.com/vickycinky) - vickycinky@ymail.com
+Victoria Kazeem - [@vickycinky](https://twitter.com/vickycinky) - vickycinky@ymail.com
 
 Project Link: [https://github.com/kelzvictoria/cdn-migrator](https://github.com/kelzvictoria/cdn-migrator)
 
@@ -125,7 +126,6 @@ Use this space to list resources you find helpful and would like to give credit 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [license-shield]: https://img.shields.io/github/license/kelzvictoria/cdn-migrator.svg?style=for-the-badge
 [license-url]: https://github.com/kelzvictoria/cdn-migrator/blob/main/LICENSE
