@@ -41,7 +41,14 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-This is a web application that accepts a JSON file, replaces NoSQL Documents CDN URLS based on the content of the JSON and then goes to AWS S3 buckets to delete replaced files.
+This is a web application that accepts a CVS file, converts it to a JSON file that contains an array of objects with the following keys:
+`{ "Formelo Entity ID": "", "Formelo Attribute Key": "", "Formelo CDN URL": "", "PFABO CDN URL": "", "Size": 0, "Raw Data ID": "", "MSSQL Table": "", "MSSQL Column": 0, "MSSQL Record Code": 0, "Formelo DB ID": 0 }`
+
+For each of the object in this array, a PATCH request is made to the Formelo API to replace the `Formelo CDN URL` value of that object with the `PFABO CDN URL` of same object.
+
+Successful patches are added to written into a file called `s3_orphans.json`.
+
+The s3_orphans.json file is used by the `deleteS3OrphanUrls` function which uses aws-sdk to delete the `Formelo CDN URL` files.
 
 <!--
 <p align="right">(<a href="#top">back to top</a>)</p> -->
