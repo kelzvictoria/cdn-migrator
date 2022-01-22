@@ -113,24 +113,22 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 
-## Contact
+<!-- ## Contact
 
 Victoria Kazeem - [@vickycinky](https://twitter.com/vickycinky) - vickycinky@ymail.com
 
 Project Link: [https://github.com/kelzvictoria/cdn-migrator](https://github.com/kelzvictoria/cdn-migrator)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p> -->
 
 <!-- ACKNOWLEDGMENTS -->
 
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+<!-- ## Acknowledgments
 
 - [Choose an Open Source License](https://choosealicense.com)
 - [Img Shields](https://shields.io)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p> -->
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
